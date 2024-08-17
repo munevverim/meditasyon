@@ -45,11 +45,16 @@ dependencies:
   cloud_firestore: ^4.14.0
   firebase_auth: ^4.16.0
   image_gallery_saver: ^2.0.3
+  flutter_launcher_icons: ^0.13.1
+  easy_localization: ^3.0.7
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/logo.jpg"
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
@@ -72,6 +77,10 @@ flutter:
   assets:
     - assets/images/
     - assets/audios/
+    
+    - assets/lang/tr.json
+    - assets/lang/en.json
+    - assets/lang/de.json
         
        
   #   - images/a_dot_ham.jpeg

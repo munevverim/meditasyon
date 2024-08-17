@@ -28,12 +28,12 @@ class LoginScreen extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () async {
-                bool success = await authController.login(emailController.text, passwordController.text);
-                if (success) {
+                String message = await authController.login(emailController.text, passwordController.text);
+                if (message == 'success') {
                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen()));
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Giriş başarısız!')),
+                    SnackBar(content: Text(message)),
                   );
                 }
               },

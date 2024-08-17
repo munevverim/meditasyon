@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../controllers/auth_controller.dart';
 import 'login_screen.dart';
+import 'welcome_screen.dart';
 
 class RegisterScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
@@ -37,19 +38,24 @@ class RegisterScreen extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () async {
-                bool success = await authController.register(
-                    emailController.text,
-                    passwordController.text,
-                    firstNameController.text,
-                    lastNameController.text);
-                if (success) {
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+                String result = await authController.register(
+                  emailController.text,
+                  passwordController.text,
+                  firstNameController.text,
+                  lastNameController.text,
+                );
+                
+                if (result == 'success') {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginScreen()),
+                  );
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text('Kayıt başarılı!')),
                   );
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Kayıt başarısız!')),
+                    SnackBar(content: Text(result)),
                   );
                 }
               },
@@ -57,7 +63,10 @@ class RegisterScreen extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => WelcomeScreen()),
+                );
               },
               child: Text('Vazgeç'),
             ),

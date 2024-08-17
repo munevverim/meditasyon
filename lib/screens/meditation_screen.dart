@@ -11,7 +11,7 @@ class _MeditationScreenState extends State<MeditationScreen> with SingleTickerPr
   TabController? _tabController;
   final List<String> meditationTitles = ['Nötr', 'Feel Good', 'Goals', 'Calm', 'Healing', 'Protect', 'Blockage'];
   final List<String> meditationPaths = [
-    'assets/audios/meditasyon_sesi1.mp3',
+    'assets/audios/Direnc DE.mp4',
     'assets/audios/meditasyon_sesi2.mp3',
     'assets/audios/meditasyon_sesi3.mp3',
     'assets/audios/meditasyon_sesi4.mp3',

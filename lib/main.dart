@@ -1,25 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/screens/meditation_player.dart';
-import 'package:flutter_application_1/screens/meditation_screen.dart';
-import 'package:flutter_application_1/screens/welcome_screen.dart';
-import 'package:flutter_application_1/screens/home_screen.dart';
-import 'package:flutter_application_1/screens/login_screen.dart';
-import 'package:flutter_application_1/screens/register_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'screens/welcome_screen.dart';
+import 'screens/home_screen.dart';
+import 'screens/login_screen.dart';
+import 'screens/register_screen.dart';
+import 'screens/change_password_screen.dart';
+import 'screens/new_password_screen.dart';
+import 'screens/notes_screen.dart';
+import 'screens/profile_screen.dart';
+import 'screens/reminders_screen.dart';
+import 'screens/settings_screen.dart';
+import 'screens/wallpaper_screen.dart';
+import 'screens/articles_screen.dart';
+import 'screens/goals_screen.dart';
 
-import 'package:flutter_application_1/screens/change_password_screen.dart';
-import 'package:flutter_application_1/screens/new_password_screen.dart';
-import 'package:flutter_application_1/screens/notes_screen.dart';
-import 'package:flutter_application_1/screens/profile_screen.dart';
-import 'package:flutter_application_1/screens/reminders_screen.dart';
-import 'package:flutter_application_1/screens/settings_screen.dart';
-import 'package:flutter_application_1/screens/todo_screen.dart';
-import 'package:flutter_application_1/screens/wallpaper_screen.dart';
-import 'package:flutter_application_1/screens/articles_screen.dart';
-import 'package:flutter_application_1/screens/goals_screen.dart';
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
 
-
-void main() {
-  runApp(MeditationApp());
+  runApp(
+    EasyLocalization(
+      supportedLocales: [
+        Locale('en', 'US'),
+        Locale('tr', 'TR'),
+        Locale('de', 'DE')
+      ],
+      path: 'assets/lang', 
+      fallbackLocale: Locale('tr', 'TR'), // Varsayılan dil Türkçe
+      startLocale: Locale('tr', 'TR'), // Uygulama başlatıldığında gelen varsayılan dil Türkçe
+      child: MeditationApp(),
+    ),
+  );
 }
 
 class MeditationApp extends StatelessWidget {
@@ -30,26 +41,27 @@ class MeditationApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/', // Başlangıç rotası
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
+      initialRoute: '/', // Başlangıç rotası WelcomeScreen olacak
       routes: {
-        '/': (context) => RemindersScreen(), // Test ekranı ana giriş ekranı olarak ayarlandı
+        '/': (context) => ArticlesScreen(), // Ana giriş ekranı
         '/home': (context) => HomeScreen(),
         '/login': (context) => LoginScreen(),
         '/register': (context) => RegisterScreen(),
-        
         '/change-password': (context) => ChangePasswordScreen(),
         '/new-password': (context) => NewPasswordScreen(userEmail: '',),
         '/notes': (context) => NotesScreen(),
         '/profile': (context) => ProfileScreen(userEmail: '',),
         '/reminders': (context) => RemindersScreen(),
         '/settings': (context) => SettingsScreen(),
-        
         '/wallpaper': (context) => WallpaperScreen(),
         '/articles': (context) => ArticlesScreen(),
         '/goals': (context) => GoalsScreen(),
-        
-        
       },
     );
   }
 }
+
+

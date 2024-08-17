@@ -91,7 +91,7 @@ class _MeditationPlayerScreenState extends State<MeditationPlayerScreen> {
         child: Column(
           children: [
             Image.asset(
-              'assets/images/meditation.jpg',
+              'assets/images/mediWomen.png',
               height: 200,
               fit: BoxFit.cover,
             ),

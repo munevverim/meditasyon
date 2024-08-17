@@ -65,6 +65,17 @@ class DBHelper {
     ''');
   }
 
+  // Kullanıcının mevcut olup olmadığını kontrol eden fonksiyon
+  Future<bool> checkUserExists(String email) async {
+    Database db = await database;
+    List<Map<String, dynamic>> results = await db.query(
+      'users',
+      where: 'email = ?',
+      whereArgs: [email],
+    );
+    return results.isNotEmpty; // Kullanıcı varsa true döndür
+  }
+
   // Reminder functions
   Future<int> insertReminder(Map<String, dynamic> row) async {
     Database db = await database;

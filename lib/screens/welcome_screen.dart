@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'login_screen.dart'; 
+import 'register_screen.dart'; // Import the RegisterScreen
 
 class WelcomeScreen extends StatelessWidget {
   @override
@@ -49,7 +50,11 @@ class WelcomeScreen extends StatelessWidget {
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  // E-Posta ile Kayıt Ol butonu için işlev ekleyin
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => RegisterScreen(), // Navigate to RegisterScreen
+                    ),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xFFE69483),
